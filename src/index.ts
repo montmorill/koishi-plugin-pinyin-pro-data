@@ -6,6 +6,7 @@ import { Schema } from 'koishi'
 import {} from 'koishi-plugin-pinyin-pro'
 
 export const name = 'pinyin-pro-data'
+export const inject = ['pinyin-pro']
 
 export interface Config {
   prefix: string
@@ -26,18 +27,12 @@ export const Config: Schema<Config> = Schema.intersect([
 ])
 
 export function apply(ctx: Context, config: Config) {
-  const prefix = config.prefix
-  const names = {
-    chars: `${prefix}chars`,
-    complete: `${prefix}complete`,
-    modern: `${prefix}modern`,
-  }
-  config.chars && ctx['pinyin-pro'].addDict(CharsDict, { name: names.chars })
-  config.complete && ctx['pinyin-pro'].addDict(CompleteDict, { name: names.complete })
-  config.modern && ctx['pinyin-pro'].addDict(ModernDict, { name: names.modern })
+  config.chars && ctx['pinyin-pro'].addDict(CharsDict, { name: `${config.prefix}chars` })
+  config.complete && ctx['pinyin-pro'].addDict(CompleteDict, { name: `${config.prefix}complete` })
+  config.modern && ctx['pinyin-pro'].addDict(ModernDict, { name: `${config.prefix}modern` })
   return () => {
-    ctx['pinyin-pro'].removeDict(names.chars)
-    ctx['pinyin-pro'].removeDict(names.complete)
-    ctx['pinyin-pro'].removeDict(names.modern)
+    ctx['pinyin-pro'].removeDict(`${config.prefix}chars`)
+    ctx['pinyin-pro'].removeDict(`${config.prefix}complete`)
+    ctx['pinyin-pro'].removeDict(`${config.prefix}modern`)
   }
 }
