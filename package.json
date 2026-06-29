@@ -1,22 +1,36 @@
 {
   "name": "koishi-plugin-pinyin-pro-data",
+  "version": "1.0.0",
   "description": "pinyin-pro 服务的扩充字典包",
-  "version": "0.0.1",
-  "main": "lib/index.js",
   "typings": "lib/index.d.ts",
-  "files": [
-    "lib",
-    "dist"
-  ],
   "license": "MIT",
-  "scripts": {},
   "keywords": [
     "chatbot",
     "koishi",
-    "plugin"
+    "plugin",
+    "pinyin",
+    "pinyin-pro"
   ],
-  "devDependencies": {},
+  "main": "lib/index.js",
+  "files": [
+    "dist",
+    "lib"
+  ],
   "peerDependencies": {
-    "koishi": "^4.18.7"
+    "koishi": "^4.18.7",
+    "koishi-plugin-pinyin-pro": "^1.2.4"
+  },
+  "dependencies": {
+    "@pinyin-pro/data": "^1.3.1"
+  },
+  "koishi": {
+    "service": {
+      "required": [
+        "pinyin-pro"
+      ]
+    }
+  },
+  "devDependencies": {
+    "koishi-plugin-pinyin-pro": "^1.2.4"
   }
 }
