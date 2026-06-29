@@ -4,6 +4,10 @@
   "description": "pinyin-pro 服务的扩充字典包",
   "typings": "lib/index.d.ts",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/montmorill/koishi-plugin-pinyin-pro-data.git"
+  },
   "keywords": [
     "chatbot",
     "koishi",
